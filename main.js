@@ -62065,7 +62065,7 @@ var ServiceMenuComponent = class _ServiceMenuComponent {
   }
   redirect(image) {
     var page = image.split("/")[2].split(".")[0];
-    window.location.href = "/services/" + page + "/?page=service";
+    window.location.href = "/services?service=" + page + "&page=service";
   }
   static \u0275fac = function ServiceMenuComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _ServiceMenuComponent)();
@@ -62220,14 +62220,15 @@ var ServicesComponent = class _ServicesComponent {
   route;
   dialog;
   serviceName = "bioInfo";
+  defaultServiceName = "bioInfo";
   serviceData;
   constructor(route, dialog) {
     this.route = route;
     this.dialog = dialog;
   }
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.serviceName = params["service"];
+    this.route.queryParams.subscribe((data) => {
+      this.serviceName = data["service"];
     });
     this.serviceData = serviceDetails_default[0][this.serviceName];
   }
@@ -62511,7 +62512,7 @@ var ResourcesComponent = class _ResourcesComponent {
   static \u0275fac = function ResourcesComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _ResourcesComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ResourcesComponent, selectors: [["app-resources"]], standalone: false, decls: 44, vars: 1, consts: [[1, "p-48"], [1, "mt-80", "fsr-51"], [1, "d-flex", "justify-content-between", "nav-resource", "fsr-21", "mt-80", "p-0", "mb-0"], ["href", "", 1, "nav-link", "nav-active", "p-0"], ["href", "", 1, "nav-link", "p-0"], [1, "mt-48"], [1, "row"], [1, "col-md-8", "col-12", "h-100"], ["src", "assets/images/res1.png", "alt", "", 1, "col-12", "w-100", "h-75", "p-0"], [1, "d-flex", "justify-content-between", "mt-4", "mb-2"], [1, "color-blue", "fsb-16", "pe-1"], [1, "fsr-16", "color-grey"], ["href", "/resources/1?page=resources", 1, "fsr-28", "link-text"], ["src", "/assets/images/link.png", "alt", "", 1, "px-2", "pb-2"], [1, "color-lightgrey", "fsr-21", "my-3"], [1, "col-md-4", "col-12", "h-100"], ["src", "assets/images/res2.png", "width", "100%", "alt", "", 1, "col-12", "p-0"], [1, "row", "mt-48"], ["class", "col-md-4 col-12 h-100", 4, "ngFor", "ngForOf"], [3, "title", "description", "image", "postedOn", "type"]], template: function ResourcesComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ResourcesComponent, selectors: [["app-resources"]], standalone: false, decls: 44, vars: 1, consts: [[1, "p-48"], [1, "mt-80", "fsr-51"], [1, "d-flex", "justify-content-between", "nav-resource", "fsr-21", "mt-80", "p-0", "mb-0"], ["href", "", 1, "nav-link", "nav-active", "p-0"], ["href", "", 1, "nav-link", "p-0"], [1, "mt-48"], [1, "row"], [1, "col-md-8", "col-12", "h-100"], ["src", "assets/images/res1.png", "alt", "", 1, "col-12", "w-100", "h-75", "p-0"], [1, "d-flex", "justify-content-between", "mt-4", "mb-2"], [1, "color-blue", "fsb-16", "pe-1"], [1, "fsr-16", "color-grey"], ["href", "/resource?id=1&page=resources", 1, "fsr-28", "link-text"], ["src", "/assets/images/link.png", "alt", "", 1, "px-2", "pb-2"], [1, "color-lightgrey", "fsr-21", "my-3"], [1, "col-md-4", "col-12", "h-100"], ["src", "assets/images/res2.png", "width", "100%", "alt", "", 1, "col-12", "p-0"], [1, "row", "mt-48"], ["class", "col-md-4 col-12 h-100", 4, "ngFor", "ngForOf"], [3, "title", "description", "image", "postedOn", "type"]], template: function ResourcesComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "p", 1);
       \u0275\u0275text(2, "Resources");
@@ -62793,10 +62794,10 @@ var AboutusComponent = class _AboutusComponent {
 // src/app/app-routing.module.ts
 var routes = [
   { path: "", redirectTo: "home?page=home", pathMatch: "full" },
-  { path: "services/:service", component: ServicesComponent },
+  { path: "services", component: ServicesComponent },
   { path: "home", component: HomeComponent },
   { path: "resources", component: ResourcesComponent },
-  { path: "resources/:id", component: ResourceDetailComponent },
+  { path: "resource", component: ResourceDetailComponent },
   { path: "aboutus", component: AboutusComponent }
 ];
 var AppRoutingModule = class _AppRoutingModule {
@@ -63276,7 +63277,7 @@ var NavbarComponent = class _NavbarComponent {
       const segments = image.split("/");
       if (segments.length > 2) {
         const page = segments[2].split(".")[0];
-        window.location.href = `/services/${page}?page=service`;
+        window.location.href = `/services?service=${page}&page=service`;
       }
     } catch (e) {
       console.error("Invalid image path:", image);
@@ -63782,7 +63783,7 @@ var FooterComponent = class _FooterComponent {
   static \u0275fac = function FooterComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _FooterComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _FooterComponent, selectors: [["app-footer"]], standalone: false, decls: 58, vars: 0, consts: [[1, "footer"], [1, "row", "p-5", "m-0"], [1, "col-md-5", "col-12", "mt-5"], ["src", "/assets/images/Logo-White.svg", "alt", "Logo", "width", "84px", "height", "36px", 1, "mb-4"], [1, "d-flex", "justify-content-between", "w-50", "mb-4"], ["href", "https://www.facebook.com"], ["src", "/assets/images/facebook.png", "alt", ""], ["href", "https://www.instagram.com"], ["src", "/assets/images/instagram.png", "alt", ""], ["href", "https://www.github.com"], ["src", "/assets/images/github.png", "alt", ""], ["href", "https://www.twitter.com"], ["src", "/assets/images/twitter.png", "alt", ""], ["href", "https://www.linkedin.com"], ["src", "/assets/images/linkedin.png", "alt", ""], ["href", "https://www.youtube.com"], ["src", "/assets/images/youtube.png", "alt", ""], [1, "flex-column", "d-flex"], ["href", "", 1, "fit-content", "color-grey", "no-underline", "fsr-12", "my-2", "link-underline"], [1, "col-md-7", "col-12", "mt-4"], [1, "row"], [1, "col-md-6", "col-12"], [1, "text-white", "mb-4", "mt-4", "fsr-21"], [1, "d-flex", "flex-column"], ["href", "/home?page=home", 1, "fit-content", "color-lightwhite", "no-underline", "my-2", "fsr-16", "link-underline"], ["href", "/aboutus?page=aboutus", 1, "fit-content", "color-lightwhite", "no-underline", "my-2", "fsr-16", "link-underline"], ["href", "/resources?pages=resources", 1, "fit-content", "color-lightwhite", "no-underline", "my-2", "fsr-16", "link-underline"], [1, "text-white", "mt-4", "mb-4", "fsr-21"], ["href", "/services/bioInfo?page=service", 1, "fit-content", "color-lightwhite", "my-2", "fsr-16", "no-underline", "link-underline"], ["href", "/services/bioEng?page=service", 1, "fit-content", "color-lightwhite", "my-2", "fsr-16", "no-underline", "link-underline"], ["href", "/services/statisticalTesting?page=service", 1, "fit-content", "color-lightwhite", "my-2", "fsr-16", "no-underline", "link-underline"], ["href", "/services/seqTech?page=service", 1, "fit-content", "color-lightwhite", "my-2", "fsr-16", "no-underline", "link-underline"], ["href", "/services/bioInfoTraining?page=service", 1, "fit-content", "color-lightwhite", "my-2", "fsr-16", "no-underline", "link-underline"], [1, "text-center", "m-0", "color-lightgrey", "fsr-16", "p-80"]], template: function FooterComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _FooterComponent, selectors: [["app-footer"]], standalone: false, decls: 58, vars: 0, consts: [[1, "footer"], [1, "row", "p-5", "m-0"], [1, "col-md-5", "col-12", "mt-5"], ["src", "/assets/images/Logo-White.svg", "alt", "Logo", "width", "84px", "height", "36px", 1, "mb-4"], [1, "d-flex", "justify-content-between", "w-50", "mb-4"], ["href", "https://www.facebook.com"], ["src", "/assets/images/facebook.png", "alt", ""], ["href", "https://www.instagram.com"], ["src", "/assets/images/instagram.png", "alt", ""], ["href", "https://www.github.com"], ["src", "/assets/images/github.png", "alt", ""], ["href", "https://www.twitter.com"], ["src", "/assets/images/twitter.png", "alt", ""], ["href", "https://www.linkedin.com"], ["src", "/assets/images/linkedin.png", "alt", ""], ["href", "https://www.youtube.com"], ["src", "/assets/images/youtube.png", "alt", ""], [1, "flex-column", "d-flex"], ["href", "", 1, "fit-content", "color-grey", "no-underline", "fsr-12", "my-2", "link-underline"], [1, "col-md-7", "col-12", "mt-4"], [1, "row"], [1, "col-md-6", "col-12"], [1, "text-white", "mb-4", "mt-4", "fsr-21"], [1, "d-flex", "flex-column"], ["href", "/home?page=home", 1, "fit-content", "color-lightwhite", "no-underline", "my-2", "fsr-16", "link-underline"], ["href", "/aboutus?page=aboutus", 1, "fit-content", "color-lightwhite", "no-underline", "my-2", "fsr-16", "link-underline"], ["href", "/resources?pages=resources", 1, "fit-content", "color-lightwhite", "no-underline", "my-2", "fsr-16", "link-underline"], [1, "text-white", "mt-4", "mb-4", "fsr-21"], ["href", "/services?service=bioInfo&page=service", 1, "fit-content", "color-lightwhite", "my-2", "fsr-16", "no-underline", "link-underline"], ["href", "/services?service=bioEng&page=service", 1, "fit-content", "color-lightwhite", "my-2", "fsr-16", "no-underline", "link-underline"], ["href", "/services?service=statisticalTesting&page=service", 1, "fit-content", "color-lightwhite", "my-2", "fsr-16", "no-underline", "link-underline"], ["href", "/services?service=seqTech&page=service", 1, "fit-content", "color-lightwhite", "my-2", "fsr-16", "no-underline", "link-underline"], ["href", "/services?service=bioInfoTraining&page=service", 1, "fit-content", "color-lightwhite", "my-2", "fsr-16", "no-underline", "link-underline"], [1, "text-center", "m-0", "color-lightgrey", "fsr-16", "p-80"]], template: function FooterComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "footer", 0)(1, "div", 1)(2, "div", 2);
       \u0275\u0275element(3, "img", 3);
